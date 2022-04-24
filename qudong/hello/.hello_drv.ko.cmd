@@ -1,0 +1,1 @@
+cmd_/home/oliver/nfsbook/qudong/hello/hello_drv.ko := arm-linux-gnueabihf-ld -r  -EL -T ./scripts/module-common.lds -T ./arch/arm/kernel/module.lds  --build-id  -o /home/oliver/nfsbook/qudong/hello/hello_drv.ko /home/oliver/nfsbook/qudong/hello/hello_drv.o /home/oliver/nfsbook/qudong/hello/hello_drv.mod.o ;  true

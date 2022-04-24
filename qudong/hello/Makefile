@@ -6,17 +6,22 @@
 # 2.3 PATH,          比如: export PATH=$PATH:/home/book/100ask_roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin 
 # 注意: 不同的开发板不同的编译器上述3个环境变量不一定相同,
 #       请参考各开发板的高级用户使用手册
-ARCH=arm
-CROSS_COMPILE=arm-linux-gnueabihf-
-PATH=$PATH:/home/oliver/rv1126/prebuilts/gcc/linux-x86/arm/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin
-KERN_DIR =/home/oliver/rv1126/kernel
-
+#	@echo	$(shell	export		ARCH=arm)
+#	@echo	$(shell	export		CROSS_COMPILE=arm-linux-gnueabihf-)
+#	@echo	$(shell	export		PATH=$PATH:/home/oliver/rv1126/prebuilts/gcc/linux-x86/arm/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin)
+# export	ARCH=arm
+# export	CROSS_COMPILE=arm-linux-gnueabihf-
+# export	PATH=$PATH:/home/oliver/rv1126/prebuilts/gcc/linux-x86/arm/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin
+KERN_DIR=/home/oliver/rv1126/kernel
 all:
-	make -C $(KERN_DIR) M=`pwd` modules 
+	@echo	$(shell	export		ARCH=arm)	
+	@echo	$(shell	export		CROSS_COMPILE=arm-linux-gnueabihf-)
+	@echo	$(shell	export		PATH=$PATH:/home/oliver/rv1126/prebuilts/gcc/linux-x86/arm/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin)
+	$(MAKE)	-C $(KERN_DIR)  M=`pwd` modules 
 	$(CROSS_COMPILE)gcc -o hello_drv_test hello_drv_test.c 
 
 clean:
-	make -C $(KERN_DIR) M=`pwd` modules clean
+	$(MAKE) -C $(KERN_DIR) M=`pwd` modules clean
 	rm -rf modules.order
 	rm -f hello_drv_test
 
